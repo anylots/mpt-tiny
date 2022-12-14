@@ -26,6 +26,24 @@ impl MptNode {
     }
 }
 
+impl From<LeafNode> for MptNode {
+    fn from(node: LeafNode) -> Self {
+        Self::Leaf(node)
+    }
+}
+
+impl From<ExtensionNode> for MptNode {
+    fn from(node: ExtensionNode) -> Self {
+        Self::Extension(node)
+    }
+}
+
+impl From<BranchNode> for MptNode {
+    fn from(node: BranchNode) -> Self {
+        Self::Branch(node)
+    }
+}
+
 pub struct EmptyNode {}
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
@@ -46,7 +64,7 @@ pub struct BranchNode {
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct ExtensionNode {
     #[serde(with = "byte_array")]
-    kecak_hash: util::KecHash,
+    pub kecak_hash: util::KecHash,
     #[serde(with = "byte_array")]
-    value: util::KecHash,
+    pub value: util::KecHash,
 }
