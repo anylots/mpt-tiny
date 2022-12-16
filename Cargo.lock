@@ -88,6 +88,7 @@ name = "mpt_tiny"
 version = "0.1.0"
 dependencies = [
  "hex",
+ "num-bigint",
  "serde",
  "serde_bytes",
  "serlp",
